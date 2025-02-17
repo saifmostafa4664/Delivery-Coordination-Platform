@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "196778462251",
+    "project_id": "rital-f2957",
+    "storage_bucket": "rital-f2957.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196778462251:android:15745cbd5f15071f1bae6e",
+        "android_client_info": {
+          "package_name": "com.example.rital"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBah6ypjebBagnByeTbvJ-o0ljKZliS7eA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
