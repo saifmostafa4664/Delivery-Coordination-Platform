@@ -6,32 +6,27 @@ on:
       - main
 
 jobs:
-  build_ios:
+  build:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.27.0" # غيرها حسب نسخة Flutter اللي شغال بيها مشروعك
+          flutter-version: '3.27.0' # أو غيرها حسب إصدار مشروعك
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build iOS (no codesign)
-        run: flutter build ios --no-codesign
-
-      - name: Archive IPA
+      - name: Install CocoaPods
         run: |
           cd ios
-          xcodebuild -scheme Runner -sdk iphoneos -configuration Release archive -archivePath $PWD/build/Runner.xcarchive
-          xcodebuild -exportArchive -archivePath $PWD/build/Runner.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath $PWD/build/Runner.ipa || true
+          pod install
+          pod update
+          cd ..
 
-      - name: Upload IPA
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-app
-          path: ios/build/Runner.ipa
+      - name: Build iOS
+        run: flutter build ios --no-codesign
